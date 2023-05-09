@@ -1,0 +1,48 @@
+﻿@using SocialNetwork.Core.Application.ViewModels;
+@{
+    ViewData["Title"] = "Mantenimiento Propiedad";
+}
+
+@model SavePropertyViewModel;
+
+@{
+    bool editmode = Model.id == 0 ? false : true; 
+}
+
+<div class="container-fluid">
+    <div class="row">
+       <div class="col-6 offset-3">
+         <div class="card shadow-sm">
+                <div class="card-header bg-dark text-light">
+                    <h4> @(editmode ? $"Editando la propiedad: {Model.Name}" : "Crear") </h4>
+                </div>
+               <div class="card-body">
+                    <div class="card-body">
+
+                        <form method="post" asp-controller="Home" asp-action="@(editmode ? $"Edit":"Create")">
+
+                            <div class="mb-3">
+                                <label for="NameText" class="form-label">Nombre</label>
+                                <input type="text" asp-for="Name" class="form-control" id="NameText">
+                                 <span asp-validation-for="Name" class="text-danger"> </span>
+                                
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="DescriptionText" class="form-label">Price</label>
+                                <input type="number" asp-for="Price" class="form-control" id="DescriptionText">  </input>
+                            </div>
+
+                            <input type="hidden" asp-for="id">
+                            
+                            <button type="submit" class="btn btn-primary">Dale</button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-warning">Atrás</a>
+                        </form>
+
+                    </div>
+                </div>
+          </div>
+       </div>
+
+    </div>
+</div>
